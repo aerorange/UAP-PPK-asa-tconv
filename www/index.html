@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title>Blank App</title>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        
+        <style>
+        fieldset {
+          border: 0;
+        }
+        label {
+          display: block;
+          margin: 30px 0 0 0;
+        }
+        .overflow {
+          height: 200px;
+        }
+        </style>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+          $( function() {
+
+            // selectmenu
+            $( "#tconv-select1-id").selectmenu();
+            $( "#tconv-select2-id").selectmenu();
+
+            // input text
+            $('input:text, input:password')
+              .button()
+              .css({
+                      'font' : 'inherit',
+                     'color' : 'inherit',
+                'text-align' : 'left',
+                   'outline' : 'none',
+                    'cursor' : 'text'
+              });
+
+            // fungsi konversi temperatur
+            $( "#value1-id").change( function() {
+              if ( $( "#tconv-select1-id").val() === "Celsius") {
+                if ( $( "#tconv-select2-id").val() === "Celsius") {
+                  $( "#value2-id").val( $( "#value1-id").val());
+                }
+                else if ( $( "#tconv-select2-id").val() === "Fahrenheit") {
+                  $( "#value2-id").val( ($( "#value1-id").val() *9/5) + 32);
+                }
+                else if ( $( "#tconv-select2-id").val() === "Kelvin") {
+                  $( "#value2-id").val( $( "#value1-id").val()*1 + 273*1);
+                }
+              }
+              else if ( $( "#tconv-select1-id").val() === "Fahrenheit") {
+                if ( $( "#tconv-select2-id").val() === "Celsius") {
+                  $( "#value2-id").val( ($( "#value1-id").val() -32)*5/9);
+                }
+                else if ( $( "#tconv-select1-id").val() === "Fahrenheit") {
+                  $( "#value2-id").val( $( "#value1-id").val());
+                }
+                else if ( $( "#tconv-select2-id").val() === "Kelvin") {
+                  $( "#value2-id").val( ($( "#value1-id").val() -32)*5/9 + 273*1);
+                }
+              }
+              else if ( $( "#tconv-select1-id").val() === "Kelvin") {
+                if ( $( "#tconv-select2-id").val() === "Celsius") {
+                  $( "#value2-id").val( $( "#value1-id").val() -273);
+                }
+                else if ( $( "#tconv-select1-id").val() === "Fahrenheit") {
+                  $( "#value2-id").val( ($( "#value1-id").val() -273)*9/5 +32);
+                }
+                else if ( $( "#tconv-select2-id").val() === "Kelvin") {
+                  $( "#value2-id").val( $( "#value1-id").val());
+                }
+              }
+            });
+          });
+        </script>
+    </head>
+    <body>
+        <p>
+          <label for="value1-id">Temperatur yang akan dikonversikan:</label>
+          <input type="text" name="value1" id="value1-id" value=""><br>
+        <select name="tconv-select1" id="tconv-select1-id">
+          <option>Celsius</option>
+          <option>Fahrenheit</option>
+          <option>Kelvin</option>
+        </select></p>
+
+        <p>
+          <label for="value2-id">Temperatur hasil konversi:</label>
+          <input type="text" name="value2" id="value2-id"><br>
+        <select name="tconv-select2" id="tconv-select2-id">
+          <option>Celsius</option>
+          <option>Fahrenheit</option>
+          <option>Kelvin</option>
+        </select></p>
+
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
+</html>
